@@ -24,7 +24,14 @@ class Search extends React.Component {
           />
         </header>
         <div className="search">
-          {preload.shows.map(show => <ShowCard show={show} />)}
+          {preload.shows
+            .filter(
+              show =>
+                `${show.title} ${show.description}`
+                  .toUpperCase()
+                  .indexOf(this.state.searchTerm.toUpperCase()) >= 0
+            )
+            .map(show => <ShowCard show={show} />)}
         </div>
       </div>
     );
