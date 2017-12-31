@@ -5,7 +5,9 @@
     "dev": "webpack-dev-server",
     "watch": "webpack --watch",
     "format": "prettier --write --single-quote --print-width=100 --parser=flow --tab-width=2 \"js/**/*.{js.jsx}\"",
-    "lint": "eslint **/*.{js,jsx} --quiet"
+    "lint": "eslint **/*.{js,jsx} --quiet",
+    "test": "jest",
+    "test:u": "just -u"
   },
   "dependencies": {
     "axios": "0.16.1",
