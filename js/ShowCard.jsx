@@ -36,7 +36,7 @@ ShowCard.propTypes = {
     poster: string.isRequired,
     title: string.isRequired,
     year: string.isRequired,
-    discription: string.isRequired
+    description: string.isRequired
   }).isRequired
 };
 
