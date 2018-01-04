@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react";
 import preload from "../data.json";
 import ShowCard from "./ShowCard";
@@ -7,7 +9,9 @@ class Search extends React.Component {
     searchTerm: ``
   };
 
-  handleSearchTermChange = event => {
+  handleSearchTermChange = (
+    event: SyntheticKeyboardEvent & { target: HTMLInputElement }
+  ) => {
     this.setState({ searchTerm: event.target.value });
   };
 
@@ -31,7 +35,15 @@ class Search extends React.Component {
                   .toUpperCase()
                   .indexOf(this.state.searchTerm.toUpperCase()) >= 0
             )
-            .map(show => <ShowCard key={show.imdbID} show={show} />)}
+            .map(show => (
+              <ShowCard
+                key={show.imdbID}
+                poster={show.poster}
+                title={show.title}
+                year={show.year}
+                description={show.description}
+              />
+            ))}
         </div>
       </div>
     );

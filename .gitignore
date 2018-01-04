@@ -6,6 +6,7 @@ coverage/
 .DS_Store
 public/*bundle*
 public/*hot-update*
+flow-typed/npm/
 *.map
 *.bundle.js
 _site/
