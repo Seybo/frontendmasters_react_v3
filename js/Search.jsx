@@ -1,8 +1,8 @@
 // @flow
 
 import React from "react";
-// import preload from "../data.json";
 import ShowCard from "./ShowCard";
+import Header from "./Header";
 
 class Search extends React.Component {
   state = {
@@ -22,15 +22,11 @@ class Search extends React.Component {
   render() {
     return (
       <div className="search">
-        <header>
-          <h1>svideo</h1>
-          <input
-            onChange={this.handleSearchTermChange}
-            value={this.state.searchTerm}
-            type="text"
-            placeholder="Search"
-          />
-        </header>
+        <Header
+          showSearch
+          searchTerm={this.state.searchTerm}
+          handleSearchTermChange={this.handleSearchTermChange}
+        />
         <div className="search">
           {this.props.shows
             .filter(
