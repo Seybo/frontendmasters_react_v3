@@ -17,6 +17,7 @@ test("Search should render correct amount of shows", () => {
 
 test("Search should render correct amount of shows based on searched term", () => {
   const searchWord = "black";
+  // TODO: this shallow not enough cos there is the Header around the search input
   const component = shallow(<Search shows={preload.shows} />);
   component.find(`input`).simulate("change", { target: { value: searchWord } });
   const showCount = preload.shows.filter(
