@@ -3,27 +3,46 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import type { RouterHistory } from "react-router-dom";
 import { setSearchTerm } from "./actionCreators";
 
-const Landing = (props: {
-  handleSearchTermChange: Function,
-  searchTerm: string
-}) => (
-  <div className="landing">
-    <h1>svideo</h1>
-    <input
-      onChange={props.handleSearchTermChange}
-      value={props.searchTerm}
-      type="text"
-      placeholder="search"
-    />
-    <Link to="/search">or Browse All</Link>
-  </div>
-);
+class Landing extends React.Component {
+  props: {
+    handleSearchTermChange: Function,
+    searchTerm: string,
+    history: RouterHistory
+  };
+
+  goToSearch = (event: SyntheticEvent) => {
+    event.preventDefault();
+    this.props.history.push("/search");
+  };
+
+  render() {
+    return (
+      <div className="landing">
+        <h1>svideo</h1>
+        <form onSubmit={this.goToSearch}>
+          <input
+            onChange={this.props.handleSearchTermChange}
+            value={this.props.searchTerm}
+            type="text"
+            placeholder="search"
+          />
+        </form>
+        <Link to="/search">or Browse All</Link>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => ({ searchTerm: state.searchTerm });
+// this one creates methods that Landing will be able to invoke to dispatch events to Redux
+// it returns an object and everything from this object will be injected as props into Landing
 const mapDispatchToProps = (dispatch: Function) => ({
   handleSearchTermChange(event) {
+    // dispatch function says "Here it is Redux, here is the action". setSearchTerm returns Action
+    // and it goes to the root reducer which accepts the object formatted by our actionCreator setSearchTerm
     dispatch(setSearchTerm(event.target.value));
   }
 });
